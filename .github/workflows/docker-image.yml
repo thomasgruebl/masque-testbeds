@@ -12,7 +12,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        service: [ masque-go, google-quiche ]
+
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: |
+        docker build ./${{ matrix.service }} \
+          --file ./${{ matrix.service }}/Dockerfile \
+          --tag my-image-${{ matrix.service }}:$(date +%s)
+          
