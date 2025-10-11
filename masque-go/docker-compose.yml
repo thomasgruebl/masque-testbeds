@@ -1,0 +1,68 @@
+networks:
+  masque_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: masque-proxy
+    networks:
+      masque_net:
+        ipv4_address: 172.20.0.2
+    cap_add:
+      - NET_ADMIN
+    # masque-proxy -b :4443 -c certs/server.crt -k certs/server.key -t "https://172.20.0.2:4443/masque?h={target_host}&p={target_port}"
+    command:
+      [
+        "masque-proxy",
+        "-b",
+        ":4443",
+        "-c",
+        "certs/server.crt",
+        "-k",
+        "certs/server.key",
+        "-t",
+        "https://172.20.0.2:4443/masque?h={target_host}&p={target_port}",
+      ]
+    ports:
+      - "4443:4443"
+    restart: unless-stopped
+    volumes:
+      - ./certs:/app/certs:ro
+      - ./capture:/capture
+    environment:
+      - SSL_CERT_FILE=/app/certs/server.crt
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: masque-client
+    networks:
+      masque_net:
+        ipv4_address: 172.20.0.3
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - proxy
+    # masque-client -t "https://172.20.0.2:4443/masque?h={target_host}&p={target_port}" https://cloudflare-quic.com:443
+    # toggle command if you want to run the client once:
+    # command:
+    #   [
+    #     "masque-client",
+    #     "-t",
+    #     "https://172.20.0.2:4443/masque?h={target_host}&p={target_port}",
+    #     "https://cloudflare-quic.com:443",
+    #   ]
+
+    # keep container open
+    command: tail -f /dev/null
+    volumes:
+      - ./certs:/app/certs:ro
+    environment:
+      - SSL_CERT_FILE=/app/certs/server.crt
