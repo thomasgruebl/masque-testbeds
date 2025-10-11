@@ -44,6 +44,13 @@ Start tcpdump on the proxy's interface to monitor all incoming and outgoing conn
 tcpdump -i any -w /capture/masque.pcap
 ```
 
+## Generate a self-signed certificate
+If want need to generate a new self-signed TLS certificate for the proxy, simply run:
+
+```bash
+./generate_new_cert.sh
+```
+
 ## Notes
 Reopening a MASQUE connection to the same endpoint may not work immediately since there is a timeout on the proxy.
 
