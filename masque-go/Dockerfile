@@ -2,7 +2,13 @@ FROM golang:latest
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y git iproute2 iputils-ping traceroute net-tools tcpdump
+RUN apt-get update && apt-get install -y \
+    git \
+    iproute2 \
+    iputils-ping \
+    traceroute \
+    net-tools \
+    tcpdump
 
 RUN git clone https://github.com/quic-go/masque-go.git .
 
