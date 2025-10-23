@@ -4,4 +4,13 @@ A collection of easy-to-deploy MASQUE testbeds for research purposes.
  Testbed | Reference | 
 |--------|-------------|
 | [masque-go testbed](./masque-go) | https://github.com/quic-go/masque-go
-| [Google quiche testbed](Google%20quiche) | https://github.com/google/quiche
+| [Google quiche testbed](./google-quiche) | https://github.com/google/quiche
+| [Cloudflare quiche testbed](./cloudflare-quiche) | https://github.com/cloudflare/quiche
+
+
+Other potential testbeds?
+
+MASQUE Plus: https://github.com/ircfspace/masque-plus
+
+USQUE: https://github.com/Diniboy1123/usque
+
