@@ -1,0 +1,62 @@
+networks:
+  google_quiche_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16
+
+services:
+  proxy:
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    image: google-masque-image
+    container_name: google-masque-server
+    networks:
+      google_quiche_net:
+        ipv4_address: 172.30.0.2
+    cap_add:
+      - NET_ADMIN
+    # /app/quiche/bazel-bin/quiche/masque_server --certificate_file /app/certs/server.crt --key_file /app/certs/server.key
+    command:
+      [
+        "/app/quiche/bazel-bin/quiche/masque_server",
+        "--certificate_file",
+        "/app/certs/server.crt",
+        "--key_file",
+        "/app/certs/server.key",
+      ]
+    ports:
+      - "9661:9661"
+    restart: unless-stopped
+    volumes:
+      - ./certs:/app/certs:ro
+      - ./capture:/capture
+    environment:
+      - SSL_CERT_FILE=/app/certs/server.crt
+
+  client:
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile
+    image: google-masque-image
+    container_name: google-masque-client
+    networks:
+      google_quiche_net:
+        ipv4_address: 172.30.0.3
+    cap_add:
+      - NET_ADMIN
+    depends_on:
+      - proxy
+    # /app/quiche/bazel-bin/quiche/masque_client --disable_certificate_verification=true 172.30.0.2:9661 https://cloudflare-quic.com
+    # toggle command if you want to run the client once:
+    # command:
+    #   [
+    #     "/app/quiche/bazel-bin/quiche/masque_client",
+    #     "--disable_certificate_verification=true",
+    #     "172.30.0.2:9661",
+    #     "https://cloudflare-quic.com",
+    #   ]
+
+    # keep container open
+    command: tail -f /dev/null
