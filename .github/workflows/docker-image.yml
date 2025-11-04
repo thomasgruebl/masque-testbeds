@@ -19,11 +19,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      with:
-          context: .
-          push: false
-          platforms: linux/arm64
       run: |
         docker build ./${{ matrix.service }} \
           --file ./${{ matrix.service }}/Dockerfile \
+          --platform linux/arm64 \
           --tag my-image-${{ matrix.service }}:$(date +%s)
