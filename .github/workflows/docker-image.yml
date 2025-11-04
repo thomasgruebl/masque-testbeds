@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        service: [ masque-go ]
+        service: [ masque-go, google-quiche ]
 
     steps:
     - uses: actions/checkout@v4
