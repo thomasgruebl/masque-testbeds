@@ -14,6 +14,14 @@ This is a dockerized testbed for the [masque-go implementation](https://github.c
                    Docker bridge network
 ```
 
+## Build the testbed
+
+Build and run the client and proxy containers
+
+```bash
+docker compose up
+```
+
 ## Start a MASQUE connection
 
 The proxy automatically starts when the containers are started. The client needs to be started manually:
@@ -50,6 +58,8 @@ If want need to generate a new self-signed TLS certificate for the proxy, simply
 ```bash
 ./generate_new_cert.sh
 ```
+
+Then place the generated files into the <i>certs</i> directory.
 
 ## Notes
 Reopening a MASQUE connection to the same endpoint may not work immediately since there is a timeout on the proxy.
