@@ -1,5 +1,5 @@
 # masque-testbeds
-A collection of easy-to-deploy MASQUE testbeds for research purposes.
+A collection of easy-to-deploy [MASQUE](https://datatracker.ietf.org/wg/masque/documents) testbeds for research purposes.
 
  Testbed | Reference | 
 |--------|-------------|
