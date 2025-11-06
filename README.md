@@ -12,5 +12,6 @@ Other potential testbeds?
 
 MASQUE Plus: https://github.com/ircfspace/masque-plus
 
-USQUE: https://github.com/Diniboy1123/usque
+Invisv-masque: https://github.com/Invisv-Privacy/masque
+
 
