@@ -1,3 +1,5 @@
+// modified version of https://github.com/quic-go/masque-go/blob/master/cmd/client/main.go. Copyright marten-seemann.
+
 package main
 
 import (
