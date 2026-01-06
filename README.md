@@ -6,11 +6,3 @@ A collection of easy-to-deploy [MASQUE](https://datatracker.ietf.org/wg/masque/d
 | [masque-go testbed](./masque-go) | https://github.com/quic-go/masque-go
 | [Google quiche testbed](./google-quiche) | https://github.com/google/quiche
 | [masque-plus testbed](./masque-plus) | https://github.com/ircfspace/masque-plus
-| [Cloudflare quiche testbed](./cloudflare-quiche) | https://github.com/cloudflare/quiche
-
-
-Other potential testbeds?
-
-Invisv-masque: https://github.com/Invisv-Privacy/masque
-
-

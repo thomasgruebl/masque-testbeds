@@ -1,3 +1,0 @@
-# Cloudflare quiche Testbed
-
-add description for this testbed...
