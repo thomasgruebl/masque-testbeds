@@ -1,4 +1,4 @@
-// modified version of https://github.com/quic-go/masque-go/blob/master/cmd/client/main.go. Copyright marten-seemann.
+// modified version of https://github.com/quic-go/masque-go/blob/master/cmd/client/main.go. Copyright tungns1207 and marten-seemann.
 
 package main
 
