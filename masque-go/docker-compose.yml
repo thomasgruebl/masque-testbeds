@@ -33,10 +33,11 @@ services:
       - "4443:4443"
     restart: unless-stopped
     volumes:
-      - ./certs:/app/certs:ro
+      - ./certs:/app/certs
       - ./capture:/capture
     environment:
       - SSL_CERT_FILE=/app/certs/server.crt
+      - SSLKEYLOGFILE=/app/certs/keys.log
 
   client:
     build:
@@ -63,6 +64,7 @@ services:
     # keep container open
     command: tail -f /dev/null
     volumes:
-      - ./certs:/app/certs:ro
+      - ./certs:/app/certs
     environment:
       - SSL_CERT_FILE=/app/certs/server.crt
+      - SSLKEYLOGFILE=/app/certs/keys.log

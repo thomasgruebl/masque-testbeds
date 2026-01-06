@@ -61,12 +61,9 @@ If want need to generate a new self-signed TLS certificate for the proxy, simply
 
 Then place the generated files into the <i>certs</i> directory.
 
+## Decryption
+
+You can now import the TLS keys that have been stored in /certs/keys.log into Wireshark. Open Wireshark, navigate to Edit->Preferences->Protocols->TLS and point the (pre)-master-secret log filename field to the keys.log file path.
+
 ## Notes
 Reopening a MASQUE connection to the same endpoint may not work immediately since there is a timeout on the proxy.
-
-.
-.
-
-!!!!!!!!!!!!!!!
-
-NEXT: dump SSL keys, so that we can decrypt the pcap
