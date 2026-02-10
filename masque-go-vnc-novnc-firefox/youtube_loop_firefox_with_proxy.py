@@ -1,3 +1,9 @@
+
+## COPYRIGHT: tungns1207
+## file copied from https://hub.docker.com/r/tungns1207/masque_firefox_with_tool
+
+
+
 import subprocess
 import time
 import os
