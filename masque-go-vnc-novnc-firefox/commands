@@ -1,0 +1,12 @@
+For keylogging:
+
+export SSL_CERT_FILE=/home/headless/Documents/certs/server.crt
+export SSLKEYLOGFILE=/home/headless/Documents/certs/key.log
+
+Start proxy manually:
+
+masque-proxy -b :4443 -c certs/server.crt -k certs/server.key -t "https://127.0.0.2:4443/masque?h={target_host}&p={target_port}"
+
+Start client manually:
+
+masque-client -insecure -t "https://127.0.0.2:4443/masque?h={target_host}&p={target_port}" https://cloudflare-quic.com:443
